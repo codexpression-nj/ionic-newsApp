@@ -1,20 +1,60 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Blank
+      The News
     </ion-title>
   </ion-toolbar>
+
+  <ion-segment lines="none" value="business" style="position: sticky; top:0px;background-color: white;"  scrollable="true" (ionChange)="onCategoryChange($event)">
+    <ion-segment-button *ngFor="let category of categories" value={{category}} style="--indicator-color:none;--color-checked:#DA2028">
+      <ion-label>{{category}}</ion-label>
+    </ion-segment-button>
+  </ion-segment>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+ <ion-title>Hot Headlines</ion-title>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+<ion-slides [options]="slideOpts">
+  <ion-slide *ngFor="let article of articlesPerCategory" (click)="getDetails(article)">
+      <ion-card>
+        <div *ngIf="article.urlToImage else noImg" >
+          <img style="width: 100%; height: 90px;object-fit: cover;"
+          src="{{article.urlToImage}}"/>
+        </div>
+       
+        <ng-template #noImg>
+          <img style="width: 100%; height: 90px;object-fit: cover;"  src="assets/img1.png"/>
+        </ng-template>
+
+        <ion-card-header>
+          <ion-card-subtitle style="font-weight: 200;">{{article.publishedAt | date}}</ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-label style="font-weight: bold; color:black">{{article.title}}</ion-label>
+        </ion-card-content>
+      </ion-card>
+  </ion-slide>
+</ion-slides>
+
+<ion-title style="margin-top: 20px;">For You</ion-title>
+<ion-list>
+
+  <ion-row style="background-color: #dedede52; border-radius: 16px;" class="ion-margin"
+   *ngFor="let article of topHeadlines">
+
+    <ion-col size="4">
+      <img style="width:300px;height: 100px;object-fit: cover;border-radius: 5px;" src="{{article.urlToImage}}" />
+    </ion-col>
+
+    <ion-col size="8">
+      <ion-label> 
+        {{article.author}}
+        <p>{{article.publishedAt | date}}</p>
+        <p style="font-weight: 200;">{{article.title}}</p>
+      </ion-label>
+    </ion-col>
+  </ion-row>
+</ion-list>
+ 
 </ion-content>

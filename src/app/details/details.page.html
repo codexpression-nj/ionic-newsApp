@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>News By- {{source}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div style="position: relative; object-fit: cover; height: 400px;margin:5px;border-radius: 5px;background-size: cover;background-position: center;background-repeat: none;" [style.backgroundImage]="'linear-gradient(rgb(34 35 41 / 10%) , rgb(34 35 41 / 90%)), url(' + image + ')'">
+    <h3 style="margin:15px;position: absolute;bottom: 0;color: white;">
+      {{author}}
+    </h3>
+  </div>
+  <div style="margin: 10px;">
+    <ion-label style="margin: 5px;" class="ion-text-wrap">{{title}}</ion-label>
+
+    <ion-item>
+      <ion-label slot="end">
+        <p>
+          {{publishedAt | date}}
+
+        </p>
+      </ion-label>
+    </ion-item>
+
+    <ion-item lines="none">
+      <ion-label class="ion-text-wrap" style="font-weight: 400;">
+        {{description}}
+      </ion-label>
+    </ion-item>
+  </div>
+
+  <ion-item line="none">
+    <ion-item line="none">
+        <ion-button fill="clear">
+          <ion-icon slot="icon-only" name="heart-outline"></ion-icon>
+        </ion-button>
+        <ion-button fill="clear">
+          <ion-icon slot="icon-only" name="share-outline"></ion-icon>
+        </ion-button>
+        <ion-button fill="clear">
+          <ion-icon slot="icon-only" name="bookmark-outline"></ion-icon>
+        </ion-button>
+    </ion-item>
+
+    <ion-button fill="outline" color="secondary" slot="end" >
+      Read More
+    </ion-button>
+  </ion-item>
+</ion-content>

@@ -25,3 +25,17 @@
 #container a {
   text-decoration: none;
 }
+
+
+ion-card{
+  width: 90%;
+  height: 240px;
+  border-radius: 5px;
+}
+
+ion-segment-button{
+  --width:1px;
+  --border-style:solid;
+  --border-radius:22px;
+  margin: 10px;
+}
