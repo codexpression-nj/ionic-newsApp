@@ -5,15 +5,15 @@
     </ion-title>
   </ion-toolbar>
 
-  <ion-segment lines="none" value="business" style="position: sticky; top:0px;background-color: white;"  scrollable="true" (ionChange)="onCategoryChange($event)">
-    <ion-segment-button *ngFor="let category of categories" value={{category}} style="--indicator-color:none;--color-checked:#DA2028">
-      <ion-label>{{category}}</ion-label>
+  <ion-segment lines="none" value="business" style="position: sticky; top:0px;background-color: white; "  scrollable="true" (ionChange)="onCategoryChange($event)">
+    <ion-segment-button *ngFor="let category of categories" value={{category}} style="--indicator-color:none;--color-checked:#DA2028; height: 10px;font-size: 1rem;min-height: 25px;">
+      <ion-label style="font-weight: 200;">{{category}}</ion-label>
     </ion-segment-button>
   </ion-segment>
 </ion-header>
 
 <ion-content [fullscreen]="true">
- <ion-title>Hot Headlines</ion-title>
+ <ion-title style="margin-top: 20px;font-weight: 200;">Hot Headlines</ion-title>
 
 <ion-slides [options]="slideOpts">
   <ion-slide *ngFor="let article of articlesPerCategory" (click)="getDetails(article)">
@@ -28,16 +28,16 @@
         </ng-template>
 
         <ion-card-header>
-          <ion-card-subtitle style="font-weight: 200;">{{article.publishedAt | date}}</ion-card-subtitle>
+          <ion-card-subtitle style="font-weight: 200;font-size: 0.9em;">{{article.publishedAt | date}}</ion-card-subtitle>
         </ion-card-header>
         <ion-card-content>
-          <ion-label style="font-weight: bold; color:black">{{article.title}}</ion-label>
+          <ion-label style="font-weight: bold; color:black;font-size: 0.7rem;" >{{article.title}}</ion-label>
         </ion-card-content>
       </ion-card>
   </ion-slide>
 </ion-slides>
 
-<ion-title style="margin-top: 20px;">For You</ion-title>
+<ion-title style="margin-top: 20px; font-weight: 200;">For You</ion-title>
 <ion-list>
 
   <ion-row style="background-color: #dedede52; border-radius: 16px;" class="ion-margin"
@@ -47,7 +47,7 @@
       <img style="width:300px;height: 100px;object-fit: cover;border-radius: 5px;" src="{{article.urlToImage}}" />
     </ion-col>
 
-    <ion-col size="8">
+    <ion-col size="8" (click)="getDetails(article)">
       <ion-label> 
         {{article.author}}
         <p>{{article.publishedAt | date}}</p>
